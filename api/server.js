@@ -1,26 +1,28 @@
 const express = require('express');
 const server = express();
+const cors = require('cors');
 
-const actionsRouter = require('./actions/actions-router')
-const projectsRouter = require('./projects/projects-router')
+const actionsRouter = require('./actions/actions-router');
+const projectsRouter = require('./projects/projects-router');
 
 // middleware
-server.use(logger); 
+server.use(logger);
 server.use(express.json());
+server.use(cors());
 
 // routers
-server.use('/api/actions', actionsRouter)
-server.use('/api/projects', projectsRouter)
+server.use('/api/actions', actionsRouter);
+server.use('/api/projects', projectsRouter);
 
 server.get('/', (req, res) => {
-  res.send(`<h1>Welcome to Unit4 Sprint1!`)
-})
+	res.send(`<h1>Welcome to Unit4 Sprint1!`);
+});
 
 server.use('*', (req, res) => {
-  res.status(404).json({
-    message: `Method ${req.method} at Path ${req.url} was not found`
-  })
-})
+	res.status(404).json({
+		message: `Method ${req.method} at Path ${req.url} was not found`,
+	});
+});
 
 module.exports = server;
 
@@ -31,5 +33,3 @@ function logger(req, res, next) {
 	console.log(`${timestamp}, ${method} request to ${url}`);
 	next();
 }
-
-module.exports = server;

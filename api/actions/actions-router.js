@@ -53,7 +53,7 @@ router.put(
 	}
 );
 
-// delete specified project id
+// delete specified action id
 router.delete('/:id', validateActionId, async (req, res, next) => {
 	try {
 		await Actions.remove(req.params.id);

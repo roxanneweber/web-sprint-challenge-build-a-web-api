@@ -37,7 +37,7 @@ A _"resetdb"_ script exists that allows you to reset the database to its origina
 
 #### Environment Variables
 
-- [ ] Bring the port number from the `process.env` variable, falling back to `9000` if `process.env.PORT` is undefined **!!!**
+- [X] Bring the port number from the `process.env` variable, falling back to `9000` if `process.env.PORT` is undefined **!!!**
 
 #### Endpoints
 
@@ -78,13 +78,13 @@ Inside `api/actions/actions-router.js` build endpoints for performing CRUD opera
   - Returns the updated action as the body of the response.
   - If there is no action with the given `id` it responds with a status code 404.
   - If the request body is missing any of the required fields it responds with a status code 400.
-- [ ] `[DELETE] /api/actions/:id`
+- [X] `[DELETE] /api/actions/:id`
   - Returns no response body.
   - If there is no action with the given `id` it responds with a status code 404.
 
 #### Middleware functions
 
-- [ ] Write at least two middleware functions for this API, and consume them in the proper places of your code.
+- [X] Write at least two middleware functions for this API, and consume them in the proper places of your code.
 
 ### Database Schemas
 
