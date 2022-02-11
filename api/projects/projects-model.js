@@ -38,11 +38,10 @@ function get(id) {
 }
 
 function getById(id) {
-  return db('projects')
-    .where({ id })
-    .first();
+	return db('projects')
+		.where({ id })
+		.first();
 }
-
 function insert(project) {
   return db("projects")
     .insert(project)

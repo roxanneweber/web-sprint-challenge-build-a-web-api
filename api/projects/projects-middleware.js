@@ -19,7 +19,6 @@ async function validateProjects(req, res, next) {
     }
 }
 
-
 async function validateProjectId(req, res, next) {
   try {
 		const project = await Projects.getById(req.params.id)
@@ -57,3 +56,5 @@ module.exports = {
   validateProjectId,
 	validateProject,
 }
+
+
