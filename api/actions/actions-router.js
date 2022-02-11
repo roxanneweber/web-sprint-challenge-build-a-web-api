@@ -33,6 +33,12 @@ router.post('/', validateAction, validateProjectId, (req, res, next) => {
 		.catch(next);
 });
 
+
+
+
+
+
+
 // update action
 router.put(
 	'/:id',
@@ -53,7 +59,6 @@ router.put(
 	}
 );
 
-// delete specified action id
 router.delete('/:id', validateActionId, async (req, res, next) => {
 	try {
 		await Actions.remove(req.params.id);
