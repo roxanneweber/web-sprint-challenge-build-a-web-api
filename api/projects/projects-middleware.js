@@ -46,7 +46,6 @@ function validateProject(req, res, next) {
 	} else {
 		req.name = name.trim();
 		req.description = description.trim();
-		req.completed = complete;
 		next();
 	}
 }

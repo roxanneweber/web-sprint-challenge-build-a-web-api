@@ -24,15 +24,42 @@ router.get('/:id', validateProjectId, (req, res) => {
 });
 
 // add new project
-router.post('/', validateProject, (req, res, next) => {
-	Projects.insert({
-		name: req.name,
-		description: req.description,
-	})
-		.then((newProject) => {
-			res.status(201).json(newProject);
-		})
-		.catch(next);
+// router.post('/', validateProject, (req, res, next) => {
+// 	Projects.insert({
+// 		name: req.name,
+// 		description: req.description,
+// 	})
+// 		.then((newProject) => {
+// 			res.status(201).json(newProject);
+// 		})
+// 		.catch(next);
+// });
+
+// add new project
+router.post('/', (req, res) => {
+	const { name, description, completed } = req.body;
+	if (!name || !description) {
+		res.status(400).json({
+			message: 'Please provide a name and description for the project',
+		});
+	} else {
+		Projects.insert({ name, description, completed })
+			.then(({ id }) => {
+				console.log(name, description, completed)
+				return Projects.get(id);
+			})
+			.then((newProject) => {
+				res.status(201).json(newProject);
+				
+			})
+			.catch((err) => {
+				res.status(500).json({
+					message: 'There was an error while adding the project to the database',
+					err: err.message,
+					stack: err.stack,
+				});
+			});
+	}
 });
 
 router.put('/:id', validateProjectId, validateProject, (req, res, next) => {
@@ -46,6 +73,7 @@ router.put('/:id', validateProjectId, validateProject, (req, res, next) => {
 		})
 		.catch(next);
 });
+
 
 // delete specified project id
 router.delete('/:id', validateProjectId, async (req, res, next) => {
