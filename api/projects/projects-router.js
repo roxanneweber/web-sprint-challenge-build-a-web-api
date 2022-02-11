@@ -40,6 +40,7 @@ router.put('/:id', validateProjectId, validateProject, (req, res, next) => {
   .catch(next)
 });
 
+// delete specified project id
 router.delete('/:id', validateProjectId, async (req, res, next) => {
   try {
     await Projects.remove(req.params.id)
@@ -50,6 +51,17 @@ router.delete('/:id', validateProjectId, async (req, res, next) => {
     next(err)
   }
 });
+
+// get actions for specified project id
+router.get('/:id/posts', validateProjectId, async (req, res, next) => {
+  try {
+    const result = await Projects.getProjectActions(req.params.id)
+    res.json(result)
+  } catch (err) {
+    next(err)
+  }
+});
+
 
 router.use((err, req, res, next) => {
 	//eslint-disable-line
