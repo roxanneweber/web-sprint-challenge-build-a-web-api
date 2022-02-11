@@ -33,18 +33,25 @@ router.post('/', validateAction, validateProjectId, (req, res, next) => {
 		.catch(next);
 });
 
-router.put('/:id', validateProjectId, validateAction, validateActionId, (req, res, next) => {
-	Actions.update(req.params.id, {
-		notes: req.notes,
-		description: req.description,
-		completed: req.complete,
-    project_id: req.project_id
-	})
-		.then((updatedAction) => {
-			res.json(updatedAction);
+// update action
+router.put(
+	'/:id',
+	validateProjectId,
+	validateAction,
+	validateActionId,
+	(req, res, next) => {
+		Actions.update(req.params.id, {
+			notes: req.notes,
+			description: req.description,
+			completed: req.complete,
+			project_id: req.project_id,
 		})
-		.catch(next);
-});
+			.then((updatedAction) => {
+				res.json(updatedAction);
+			})
+			.catch(next);
+	}
+);
 
 // delete specified project id
 router.delete('/:id', validateProjectId, async (req, res, next) => {
@@ -57,7 +64,6 @@ router.delete('/:id', validateProjectId, async (req, res, next) => {
 		next(err);
 	}
 });
-
 
 router.use((err, req, res, next) => {
 	//eslint-disable-line

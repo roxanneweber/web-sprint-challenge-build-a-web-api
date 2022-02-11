@@ -27,10 +27,10 @@ function validateAction(req, res, next) {
 			message: 'missing required project id field',
 		});
 	} else {
-		(req.project_id = project_id),
-			(req.description = description.trim()),
-			(req.notes = notes.trim()),
-			(req.completed = complete);
+		req.project_id = project_id;
+		req.description = description;
+		req.notes = notes;
+		req.completed = complete;
 		next();
 	}
 }
