@@ -16,8 +16,6 @@ async function validateProjects(req, res, next) {
 			res.status(500).json({
 				message: 'There was a problem accessing the project information',
 			});
-                  
-
     }
 }
 
@@ -26,7 +24,7 @@ async function validateProjectId(req, res, next) {
   try {
 		const project = await Projects.getById(req.params.id)
 				if (!project) {
-					res.status(400).json({
+					res.status(404).json({
 						message: 'There is no project with the specified id'
 					})
 				} else {
@@ -41,33 +39,21 @@ async function validateProjectId(req, res, next) {
 			}
 	}
 
-function validateProjectDescription(req, res, next) {
-	const { name } = req.body;
-	if (!name || !name.trim()) {
-		res.status(400).json({
-			message: 'missing required name field',
-		});
-	} else {
-		req.name = name.trim();
-		next();
+	function validateProject(req, res, next) {
+		const { name, description } = req.body 
+		if (!name || !description) {
+			res.status(400).json({
+				message: 'missing required name and description fields'
+			})
+		} else {
+			req.name = name.trim()
+			req.description = description.trim()
+			next()
+		}
 	}
-}
-
-function validateProjectName(req, res, next) {
-	const { text } = req.body;
-	if (!text || !text.trim()) {
-		res.status(400).json({
-			message: 'missing required text field',
-		});
-	} else {
-		req.text = text.trim();
-		next();
-	}
-}
 
 module.exports = {
 	validateProjects,
   validateProjectId,
-	validateProjectName,
-	validateProjectDescription,
-};
+	validateProject,
+}

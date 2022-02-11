@@ -6,6 +6,7 @@ const projectsRouter = require('./projects/projects-router')
 
 // middleware
 server.use(logger); 
+server.use(express.json());
 
 // routers
 server.use('/api/actions', actionsRouter)
