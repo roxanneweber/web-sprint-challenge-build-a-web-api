@@ -59,13 +59,13 @@ Inside `api/projects/projects-router.js` build the following endpoints:
 - [X] `[DELETE] /api/projects/:id`
   - Returns no response body.
   - If there is no project with the given `id` it responds with a status code 404.
-- [ ] `[GET] /api/projects/:id/actions`
+- [X] `[GET] /api/projects/:id/actions`
   - Returns an array of actions (could be empty) belonging to a project with the given `id`.
   - If there is no project with the given `id` it responds with a status code 404.
 
 Inside `api/actions/actions-router.js` build endpoints for performing CRUD operations on _actions_:
 
-- [ ] `[GET] /api/actions`
+- [X] `[GET] /api/actions`
   - Returns an array of actions (or an empty array) as the body of the response.
 - [ ] `[GET] /api/actions/:id`
   - Returns an action with the given `id` as the body of the response.
