@@ -7,22 +7,21 @@ const {
 	validateProjectName,
 	validateProjectDescription,
 } = require('./projects-middleware');
+
 const Projects = require('./projects-model');
 
 // get all projects
-router.get('/', (req, res, next) => {
-	Projects.get()
-		.then((projs) => {
-      if (!projs) {
-        res.status(400).json({
-          message: 'There are no projects available'
-        })
-      } else {
-        res.json(projs);
-      }
-			
-		})
-		.catch(next);
+router.get('/', validateProjects, (req, res, next) => {
+  Projects.get()
+  .then(users => {
+    res.json(users)
+  })
+  .catch(next)
+});
+
+// get project with specified id
+router.get('/:id', validateProjectId, (req, res) => {
+  res.json(req.project)
 });
 
 router.use((err, req, res, next) => {
