@@ -56,9 +56,9 @@ router.put(
 // delete specified action id
 router.delete('/:id', validateActionId, async (req, res, next) => {
 	try {
-		await Actions.remove(req.params.id);
+		await Projects.remove(req.params.id);
 		res.json({
-			message: 'The specified action has been removed',
+			message: 'The specified project has been removed',
 		});
 	} catch (err) {
 		next(err);
