@@ -20,23 +20,22 @@ async function validateProjects(req, res, next) {
 }
 
 async function validateProjectId(req, res, next) {
-  try {
-		const project = await Projects.getById(req.params.id)
-				if (!project) {
-					res.status(404).json({
-						message: 'There is no project with the specified id'
-					})
-				} else {
-					req.project = project;
-					next()
-				}
-			}
-			catch (err) {
-				res.status(500).json({
-					message: 'There was a problem accessing the project information',
-				});
-			}
-	}
+	try {
+		const project = await Projects.get(req.params.id);
+		if (!project) {
+			res.status(404).json({
+				message: 'an project with the specified ID was not found',
+			});
+		} else {
+			req.project = project;
+			next();
+		}
+	} catch (err) {
+    res.status(500).json({
+      message: 'There was a problem accessing the action information',
+    })
+  }
+}
 
 	function validateProject(req, res, next) {
 		const { name, description } = req.body 
