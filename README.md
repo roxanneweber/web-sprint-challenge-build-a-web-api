@@ -18,9 +18,9 @@ In meeting the minimum viable product (MVP) specifications listed below, your pr
 
 ### Task 1: Project Set Up
 
-- [ ] Run `npm install` to install your dependencies.
+- [X] Run `npm install` to install your dependencies.
 - [ ] Run tests locally executing `npm test`.
-- [ ] Reset the database to its original state executing `npm run resetdb`.
+- [X] Reset the database to its original state executing `npm run resetdb`.
 
 ### Task 2: Project Requirements (MVP)
 
@@ -31,9 +31,9 @@ Your finished project must include all of the following requirements:
 A _"test"_ script already exists you can use to run tests against your code.
 A _"resetdb"_ script exists that allows you to reset the database to its original state.
 
-- [ ] Write an _npm script_ named _"start"_ that uses `node` to run the API server.
-- [ ] Write an _npm script_ named _"server"_ that uses `nodemon` to run the API server.
-- [ ] Install _nodemon_ as a development dependency that would not be used in production.
+- [X] Write an _npm script_ named _"start"_ that uses `node` to run the API server.
+- [X] Write an _npm script_ named _"server"_ that uses `nodemon` to run the API server.
+- [X] Install _nodemon_ as a development dependency that would not be used in production.
 
 #### Environment Variables
 
@@ -137,17 +137,38 @@ We have provided test data for all the resources.
 
 ## Submission format
 
-- [ ] Submit via Codegrade by pushing commits to your `main` branch.
-- [ ] Check Codegrade before the deadline to compare its results against your local tests.
-- [ ] Check Codegrade on the days following the Sprint Challenge for reviewer feedback.
-- [ ] New commits will be evaluated by Codegrade if pushed _before_ the sprint challenge deadline.
+- [X] Submit via Codegrade by pushing commits to your `main` branch.
+- [X] Check Codegrade before the deadline to compare its results against your local tests.
+- [X] Check Codegrade on the days following the Sprint Challenge for reviewer feedback.
+- [X] New commits will be evaluated by Codegrade if pushed _before_ the sprint challenge deadline.
 
 ## Interview Questions
 
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. The core features of Node.js and Express and why they are useful.
-1. Understand and explain the use of Middleware.
-1. The basic principles of the REST architectural style.
-1. Understand and explain the use of Express Routers.
-1. Describe tooling used to manually test the correctness of an API.
+express:
+Node.js was developed as a way to utilize JavaScript on the server side, which offers more powerful features. Node.js can handle thousands of concurrent connections with a single server, which increases speed and efficiency and eliminates common bugs with multiple connections. Node.js is cross-platform (important today with so many browsers and device combinations) and can be used for nearly any kind of project.
+
+Express used within Node.js allows you to set up middlewares, which can respond to HTTP requests. Express allows you to create routing tables which can watch for different actions and perform the correct one with passed in arguments. It also allows the dynamic rendering of HTML pages based on passing an argument to the template.
+
+2. Understand and explain the use of Middleware.
+Middleware, aptly named, works "in the middle" of a web request and the framework that has to respond. It is like an organizer of communications between the two. This is important as it provides a way to funnel organized information from one piece of software to another. This is especially important when you integrate different types of software together.
+
+3. The basic principles of the REST architectural style.
+There are 5 basic principles of the RESTful API.
+a) there are uniform resource identifiers - everytime we type the same URI, it should return the same required information
+
+b) statelessness - the server does not maintain the state, the client provides all info necessary for a server-side response
+
+c) client-server model - the point of intersection between client and server is the database schema. This allows the server to do its thing, and the client to do its thing, without worrying what the other is doing
+
+d) caching - because a RESTful database does not save state, there is more back and forth communication between client and server. To help manage it, caching is used
+
+e) layered architecture - each layer in the app that performs a function only knows about the layers before and after it, a 'separation of concerns' allows you to integrate more easily
+
+REST is an acronym for Representational State Transfer, which just means the current state of an object. These objects are stored as a collection within a database. When some 'state' in the database requires a change (i.e., your dog is now potty trained, so the state of 'potty trained' goes from 'false' to 'true'), we transfer this state from the server to the app. This transfer happens through the API.
+
+3. Understand and explain the use of Express Routers. Just as your home router can manage all the device connections so they can easily be used anywhere in the system, Express router manages multiple routes without having to import them every place you need them. Then the router only needs to be import into app.js once, and all other files have access to the paths
+
+4. Describe tooling used to manually test the correctness of an API. One tool is Postman, which can check for an API connection and show you headers and other details about all the information stored in that API. HTTPie is another program integrated into the operating system shell package, that allows you to make calls to the API and see real-time responses while developing.
